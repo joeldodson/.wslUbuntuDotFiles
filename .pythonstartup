@@ -1,0 +1,36 @@
+# python startup file
+import readline
+
+import rlcompleter
+import atexit
+import os
+
+# tab completion
+readline.parse_and_bind('tab: complete')
+
+# history file
+histfile = os.path.join(os.environ['HOME'], '.pythonhistory')
+
+try:
+    readline.read_history_file(histfile)
+
+except IOError:
+    pass
+
+atexit.register(readline.write_history_file, histfile)
+del os, histfile, readline, rlcompleter 
+
+# some helper functions added by Joel 
+
+def sipl(listarg, pattern = None):
+    """ print list Single Item Per Line 
+    add pattern to print only items containing pattern
+    """ 
+    for item in listarg:
+        if pattern:
+            if pattern in item:
+                print(item)
+        else :
+            print(item)
+
+
